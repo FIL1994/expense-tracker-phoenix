@@ -10,5 +10,6 @@ defmodule ExpenseTrackerWeb.Router do
     # resources "/users", UserController, except: [:new, :edit]
     post "/users/signup", UserController, :create
     post "/users/signin", UserController, :signin
+    resources "/expenses", ExpenseController, except: [:new, :edit]
   end
 end
