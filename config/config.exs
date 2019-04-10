@@ -28,3 +28,8 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+
+config :expense_tracker, ExpenseTracker.Auth.Guardian,
+  issuer: "expense_tracker",
+  # use "mix guardian.gen.secret" to generate secret
+  secret_key: "JsM7rNwLPn0YikS/qIz8qH2pRbKjhfAfj49D3IyJECYL+XuG8FnC/ygIb0eNFzjo"
