@@ -13,6 +13,7 @@ defmodule ExpenseTrackerWeb.ExpenseView do
   def render("expense.json", %{expense: expense}) do
     %{id: expense.id,
       description: expense.description,
-      amount: expense.amount}
+      amount: expense.amount,
+      user_id: expense.user_id}
   end
 end

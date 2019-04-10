@@ -3,6 +3,7 @@ defmodule ExpenseTrackerWeb.ExpenseController do
 
   alias ExpenseTracker.Expenses
   alias ExpenseTracker.Expenses.Expense
+  alias ExpenseTrackerWeb.Auth.Guardian
 
   action_fallback ExpenseTrackerWeb.FallbackController
 
@@ -12,6 +13,7 @@ defmodule ExpenseTrackerWeb.ExpenseController do
   end
 
   def create(conn, %{"expense" => expense_params}) do
+    #  {:ok, resource, claims} = Guardian.resource_from_token(token) 
     with {:ok, %Expense{} = expense} <- Expenses.create_expense(expense_params) do
       conn
       |> put_status(:created)
