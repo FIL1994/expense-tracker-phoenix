@@ -29,7 +29,7 @@ config :phoenix, :json_library, Jason
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
 
-config :expense_tracker, ExpenseTracker.Auth.Guardian,
+config :expense_tracker, ExpenseTrackerWeb.Auth.Guardian,
   issuer: "expense_tracker",
   # use "mix guardian.gen.secret" to generate secret
   secret_key: "JsM7rNwLPn0YikS/qIz8qH2pRbKjhfAfj49D3IyJECYL+XuG8FnC/ygIb0eNFzjo"

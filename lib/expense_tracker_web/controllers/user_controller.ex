@@ -3,7 +3,7 @@ defmodule ExpenseTrackerWeb.UserController do
 
   alias ExpenseTracker.Accounts
   alias ExpenseTracker.Accounts.User
-  alias ExpenseTracker.Auth.Guardian
+  alias ExpenseTrackerWeb.Auth.Guardian
 
   action_fallback ExpenseTrackerWeb.FallbackController
 

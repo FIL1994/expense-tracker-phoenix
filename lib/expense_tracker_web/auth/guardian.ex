@@ -1,4 +1,4 @@
-defmodule ExpenseTracker.Auth.Guardian do
+defmodule ExpenseTrackerWeb.Auth.Guardian do
   use Guardian, otp_app: :expense_tracker
 
   alias ExpenseTracker.Accounts
