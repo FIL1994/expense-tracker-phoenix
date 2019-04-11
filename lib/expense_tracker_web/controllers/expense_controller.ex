@@ -8,14 +8,15 @@ defmodule ExpenseTrackerWeb.ExpenseController do
   action_fallback ExpenseTrackerWeb.FallbackController
 
   def index(conn, _params) do
-    IO.inspect(Guardian.get_user(conn))
+    IO.puts(Guardian.get_user(conn).id)
 
     expenses = Expenses.list_expenses()
     render(conn, "index.json", expenses: expenses)
   end
 
   def create(conn, %{"expense" => expense_params}) do
-    #  {:ok, resource, claims} = Guardian.resource_from_token(token) 
+    expense_params = Map.put(expense_params, "user_id", Guardian.get_user(conn).id)
+
     with {:ok, %Expense{} = expense} <- Expenses.create_expense(expense_params) do
       conn
       |> put_status(:created)
