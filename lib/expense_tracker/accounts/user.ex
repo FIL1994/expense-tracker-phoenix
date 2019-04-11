@@ -6,6 +6,7 @@ defmodule ExpenseTracker.Accounts.User do
     field :email, :string
     field :encrypted_password, :string
     field :password, :string, virtual: true
+    has_many :expenses, ExpenseTracker.Expenses.User
 
     timestamps()
   end
