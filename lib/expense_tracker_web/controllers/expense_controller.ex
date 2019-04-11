@@ -8,6 +8,8 @@ defmodule ExpenseTrackerWeb.ExpenseController do
   action_fallback ExpenseTrackerWeb.FallbackController
 
   def index(conn, _params) do
+    IO.inspect(Guardian.get_user(conn))
+
     expenses = Expenses.list_expenses()
     render(conn, "index.json", expenses: expenses)
   end

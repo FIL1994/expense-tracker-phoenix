@@ -34,4 +34,10 @@ defmodule ExpenseTrackerWeb.Auth.Guardian do
     {:ok, token, _claims} = encode_and_sign(user)
     {:ok, user, token}
   end
+
+  def get_user(conn) do
+    token = Guardian.Plug.current_token(conn)
+    {:ok, user, claims} = resource_from_token(token)
+    user
+  end
 end
