@@ -12,4 +12,4 @@
 alias ExpenseTracker.Repo
 alias ExpenseTracker.Accounts.User
 
-Repo.insert!(%User{email: "test", password: "password"})
+Repo.insert!(%User{email: "test@email.com", password: "password"})
