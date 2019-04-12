@@ -19,6 +19,7 @@ jobs: # basic units of work in a run
 
       - run: mix local.hex --force # install Hex locally (without prompt)
       - run: mix local.rebar --force # fetch a copy of rebar (without prompt)
+      - run: mix deps.get
 
       # - restore_cache: # restores saved mix cache
       #     # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
