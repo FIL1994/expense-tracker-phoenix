@@ -53,11 +53,13 @@ jobs: # basic units of work in a run
 
       - run: mix test # run all tests in project
 
-      - store_test_results: # upload junit test results for display in Test Summary
-          # Read more: https://circleci.com/docs/2.0/collect-test-data/
-          path: _build/test/lib/expense_tracker # Replace with the name of your :app
-
       - run: MIX_ENV=test mix do compile --warnings-as-errors, coveralls.json
       - run:
           name: Report Coverage
           command: bash <(curl -s https://codecov.io/bash)
+
+      - store_test_results: # upload junit test results for display in Test Summary
+          # Read more: https://circleci.com/docs/2.0/collect-test-data/
+          path: _build/test/lib/expense_tracker # Replace with the name of your :app
+
+      
