@@ -9,3 +9,7 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+alias ExpenseTracker.Repo
+alias ExpenseTracker.Accounts.User
+
+Repo.insert!(%User{email: "test", password: "password"})
