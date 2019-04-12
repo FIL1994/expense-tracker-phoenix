@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/elixir:1.8
+    steps:
+      - checkout
+      - run:
+          name: Install Packages
+          command: mix deps.get
+      - run:
+          name: Run Tests
+          command: mix test
+      # - run:
+      #     name: Report Coverage
+      #     command: bash <(curl -s https://codecov.io/bash)
+      # - store_test_results:
+      #       path: coverage
+workflows:
+  version: 2
+  test_flow:
+    jobs:
+      - build
