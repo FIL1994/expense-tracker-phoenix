@@ -6,8 +6,16 @@ defmodule ExpenseTracker.AccountsTest do
   describe "users" do
     alias ExpenseTracker.Accounts.User
 
-    @valid_attrs %{email: "some email", encrypted_password: "some encrypted_password"}
-    @update_attrs %{email: "some updated email", encrypted_password: "some updated encrypted_password"}
+    @valid_attrs %{
+      email: "some@email.com",
+      encrypted_password: "some encrypted_password",
+      password: "password"
+    }
+    @update_attrs %{
+      email: "some_updated@email.com",
+      encrypted_password: "some updated encrypted_password",
+      password: "password"
+    }
     @invalid_attrs %{email: nil, encrypted_password: nil}
 
     def user_fixture(attrs \\ %{}) do
@@ -21,18 +29,18 @@ defmodule ExpenseTracker.AccountsTest do
 
     test "list_users/0 returns all users" do
       user = user_fixture()
-      assert Accounts.list_users() == [user]
+      assert Accounts.list_users() == [Map.put(user, :password, nil)]
     end
 
     test "get_user!/1 returns the user with given id" do
       user = user_fixture()
-      assert Accounts.get_user!(user.id) == user
+      assert Accounts.get_user!(user.id) == Map.put(user, :password, nil)
     end
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
-      assert user.email == "some email"
-      assert user.encrypted_password == "some encrypted_password"
+      assert user.email == "some@email.com"
+      assert user.encrypted_password != "some encrypted_password"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -42,14 +50,14 @@ defmodule ExpenseTracker.AccountsTest do
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
       assert {:ok, %User{} = user} = Accounts.update_user(user, @update_attrs)
-      assert user.email == "some updated email"
-      assert user.encrypted_password == "some updated encrypted_password"
+      assert user.email == "some_updated@email.com"
+      assert user.encrypted_password != "some updated encrypted_password"
     end
 
     test "update_user/2 with invalid data returns error changeset" do
       user = user_fixture()
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
-      assert user == Accounts.get_user!(user.id)
+      assert Map.put(user, :password, nil) == Accounts.get_user!(user.id)
     end
 
     test "delete_user/1 deletes the user" do
