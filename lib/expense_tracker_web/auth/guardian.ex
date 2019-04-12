@@ -37,7 +37,7 @@ defmodule ExpenseTrackerWeb.Auth.Guardian do
 
   def get_user(conn) do
     token = Guardian.Plug.current_token(conn)
-    {:ok, user, claims} = resource_from_token(token)
+    {:ok, user, _claims} = resource_from_token(token)
     user
   end
 end

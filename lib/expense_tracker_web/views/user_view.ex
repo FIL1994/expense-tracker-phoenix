@@ -1,6 +1,6 @@
 defmodule ExpenseTrackerWeb.UserView do
   use ExpenseTrackerWeb, :view
-  alias ExpenseTrackerWeb.UserView
+  # alias ExpenseTrackerWeb.UserView
 
   # def render("index.json", %{users: users}) do
   #   %{data: render_many(users, UserView, "user.json")}
