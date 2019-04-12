@@ -20,6 +20,10 @@ jobs: # basic units of work in a run
       - run: mix local.hex --force # install Hex locally (without prompt)
       - run: mix local.rebar --force # fetch a copy of rebar (without prompt)
       - run: mix deps.get
+      - run: MIX_ENV=test mix do compile --warnings-as-errors, coveralls.json
+      - run:
+          name: Report Coverage
+          command: bash <(curl -s https://codecov.io/bash)
 
       # - restore_cache: # restores saved mix cache
       #     # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
@@ -53,11 +57,6 @@ jobs: # basic units of work in a run
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       - run: mix test # run all tests in project
-
-      - run: MIX_ENV=test mix do compile --warnings-as-errors, coveralls.json
-      - run:
-          name: Report Coverage
-          command: bash <(curl -s https://codecov.io/bash)
 
       - store_test_results: # upload junit test results for display in Test Summary
           # Read more: https://circleci.com/docs/2.0/collect-test-data/
