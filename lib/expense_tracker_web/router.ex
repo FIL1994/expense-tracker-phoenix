@@ -24,6 +24,7 @@ defmodule ExpenseTrackerWeb.Router do
   scope "/api", ExpenseTrackerWeb do
     pipe_through [:api, :auth]
     resources "/expenses", ExpenseController, except: [:new, :edit]
+    options "/expenses", ExpenseController, except: [:new, :edit]
   end
 
   pipeline :browser do
