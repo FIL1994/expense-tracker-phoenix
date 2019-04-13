@@ -2,6 +2,7 @@ defmodule ExpenseTrackerWeb.Router do
   use ExpenseTrackerWeb, :router
 
   pipeline :api do
+    plug CORSPlug, origin: "*", allow_headers: ["accept", "content-type"]
     plug :accepts, ["json"]
   end
 
@@ -12,8 +13,12 @@ defmodule ExpenseTrackerWeb.Router do
   scope "/api", ExpenseTrackerWeb do
     pipe_through :api
     # resources "/users", UserController, except: [:new, :edit]
+
     post "/users/signup", UserController, :create
     post "/users/signin", UserController, :signin
+
+    options "/users/signup", UserController, :create
+    options "/users/signin", UserController, :signin
   end
 
   scope "/api", ExpenseTrackerWeb do
