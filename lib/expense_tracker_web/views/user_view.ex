@@ -13,4 +13,8 @@ defmodule ExpenseTrackerWeb.UserView do
   def render("user.json", %{user: user, token: token}) do
     %{email: user.email, token: token}
   end
+
+  def render("socket.json", %{token: token}) do
+    %{token: token}
+  end
 end

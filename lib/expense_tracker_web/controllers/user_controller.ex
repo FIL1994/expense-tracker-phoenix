@@ -29,6 +29,20 @@ defmodule ExpenseTrackerWeb.UserController do
     end
   end
 
+  def socket(conn, _) do
+    id = Guardian.get_user(conn).id
+
+    IO.puts("ID")
+    IO.puts(id)
+
+    token = Phoenix.Token.sign(ExpenseTrackerWeb.Endpoint, "user socket", Guardian.get_user(conn).id)
+    assign(conn, :user_token, token)
+
+    conn
+    |> put_status(:created)
+    |> render("socket.json", %{token: String.replace(Kernel.inspect(token), "\"", "")})
+  end
+
   #   def show(conn, %{"id" => id}) do
   #     user = Accounts.get_user!(id)
   #     render(conn, "show.json", user: user)
